@@ -33,7 +33,7 @@
  * If brackets do not have correct syntax or a number in it, they are parsed as a attribute name without any warning.
  *
  * Path List:
- * No separator is needed, names can have any character in it, even separator and brackets are allowed, character has a syntax meaning.
+ * No separator is needed, names can have any character in it, even separator and brackets are allowed.
  * A list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in a array.
  *
  * Array Indexes:

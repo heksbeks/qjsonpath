@@ -41,14 +41,15 @@ If an array index is negative it counts down from the top, -1 for example would 
 ```c++
 QJsonDocument doc; // also works with QJsonValue and QJsonObject in the same way
 
-// non existent attributes are undefined
-Q_ASSERT(QJsonPath::get(doc, "nonexistent") == QJsonValue(QJsonValue::Undefined)); // values not found are QJsonValue::Undefined, not QJsonValue::Null
+// values not found are QJsonValue::Undefined, not QJsonValue::Null
+Q_ASSERT(QJsonPath::get(doc, "nonexistent") == QJsonValue(QJsonValue::Undefined));
 Q_ASSERT(QJsonPath::get(doc, "nonexistent", 55) == 55); // default value
-Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined)); // key names can also be empty
+// key names can also be empty
+Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined));
 
 // simple attributes in root
 QJsonPath::set(doc, "name0", "def"); // simple string attribute
-Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined)); // try again with not empty JSON structure
+Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined));
 QJsonPath::set(doc, "", "abc"); // key names can also be empty
 Q_ASSERT(QJsonPath::get(doc, "name0") == "def");
 Q_ASSERT(QJsonPath::get(doc, "") == "abc");

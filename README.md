@@ -1,7 +1,7 @@
 # QJsonPath
 
 A simple class to set, get and remove attributes of JSON data in Qt. Simple XPath like notation to specify attributes.
-Functions support all JSON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue
+Functions support all JSON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue.
 
 ## Functions
 ```c++
@@ -30,7 +30,7 @@ If brackets do not have correct syntax or a number in it, they are parsed as a a
 
 ## Path List
 No separator is needed, names can have any character in it, even separator and brackets are allowed.
-A list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in a array.
+A list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in an array.
 
 ## Array Indexes
 If an array index is negative it counts down from the top, -1 for example would be the last array element. Indexes start at zero.

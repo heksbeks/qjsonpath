@@ -46,9 +46,9 @@ class QJsonPath
 public:
     /**
      * @brief Function will modify a json object inplace, setting the json attribute definied by path to newValue, creating the full path if missing.
-     * @param root Object representing the JSON structure.
-     * @param path Path expression string (default seperator is '/').
-     * @param newValue New assigned value.
+     * @param root     [in/out] Object representing the JSON structure.
+     * @param path     [in] Path expression string (default seperator is '/').
+     * @param newValue [in] New assigned value.
      */
     template <class T> static void set(T& root, const QString& path, const QJsonValue& newValue)
     {
@@ -57,9 +57,9 @@ public:
 
     /**
      * @brief Function will modify a json object inplace, setting the json attribute definied by path to newValue, creating the full path if missing.
-     * @param root Object representing the JSON structure.
-     * @param path Path expression list.
-     * @param newValue New assigned value.
+     * @param root     [in/out] Object representing the JSON structure.
+     * @param path     [in] Path expression list.
+     * @param newValue [in] New assigned value.
      */
     static void set(QJsonValue& root, const QVariantList& path, const QJsonValue& newValue);
     static void set(QJsonObject& root, const QVariantList& path, const QJsonValue& newValue);
@@ -68,9 +68,9 @@ public:
 
     /**
      * @brief Function will retrieve a json object defined by path. The json object can also be part of a tree with child elements.
-     * @param root Object representing the JSON structure.
-     * @param path Path expression string (default seperator is '/').
-     * @param defaultValue Value returned when the key is not found.
+     * @param root         [in/out] Object representing the JSON structure.
+     * @param path         [in] Path expression string (default seperator is '/').
+     * @param defaultValue [in] Value returned when the key is not found.
      * @return Value if found, else defaultValue.
      */
     template <class T> static QJsonValue get(T& root, const QString& path, const QJsonValue& defaultValue = QJsonValue(QJsonValue::Undefined))
@@ -80,9 +80,9 @@ public:
 
     /**
      * @brief Function will retrieve a json object defined by path. The json object can also be part of a tree with child elements.
-     * @param root Object representing the JSON structure.
-     * @param path Path expression list.
-     * @param defaultValue Value returned when the key is not found.
+     * @param root         [in/out] Object representing the JSON structure.
+     * @param path         [in] Path expression list.
+     * @param defaultValue [in] Value returned when the key is not found.
      * @return Value if found, else defaultValue.
      */
     static QJsonValue get(const QJsonValue& root, const QVariantList& path, const QJsonValue& defaultValue = QJsonValue(QJsonValue::Undefined));
@@ -92,8 +92,8 @@ public:
 
     /**
      * @brief Function will delete a json attribute or array element defined by path inplace.
-     * @param root Object representing the JSON structure.
-     * @param path Path expression string (default seperator is '/').
+     * @param root   [in/out] Object representing the JSON structure.
+     * @param path   [in] Path expression string (default seperator is '/').
      */
     template <class T> static void remove(T& root, const QString& path)
     {
@@ -102,8 +102,8 @@ public:
 
     /**
      * @brief Function will delete a json attribute or array element defined by path inplace.
-     * @param root Object representing the JSON structure.
-     * @param path Path expression list.
+     * @param root   [in/out] Object representing the JSON structure.
+     * @param path   [in] Path expression list.
      */
     static void remove(QJsonValue& root, const QVariantList& path);
     static void remove(QJsonObject& root, const QVariantList& path);

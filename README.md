@@ -1,7 +1,7 @@
 # QJsonPath
 
-A simple XPath implementation for JSON data in Qt.
-Functions supports all JSON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue
+A simple class to set, get and remove attributes of JSON data in Qt. Simple XPath like notation to specify attributes.
+Functions support all JSON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue
 
 ## Functions
 ```c++

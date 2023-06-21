@@ -33,8 +33,8 @@ A path specified as a QString uses separators and brackets. A QString is convert
 If brackets do not have correct syntax or a number in it, they are parsed as a attribute name without any warning.
 
 ## Path List
-No separator is needed, names can have any character in it, even separator and brackets are allowed.
-A list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in an array.
+Path is specified as a QVariantList. No separator is needed, names can have any character in it, even separator and brackets are allowed.
+The list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in an array.
 
 ## Array Indexes
 If an array index is negative it counts down from the top, -1 for example would be the last array element. Indexes start at zero.

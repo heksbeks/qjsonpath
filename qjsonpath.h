@@ -8,8 +8,9 @@
 
 //!  QJsonPath
 /*!
- * A simple XPath implementation for JSON data in Qt.
- * Functions supports all JSNON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue
+ * A simple class to set, get and remove attributes of JSON data in Qt.
+ * Simple XPath like notation to specify JSON attributes.
+ * Functions support all JSON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue.
  *
  * Functions:
  * void QJsonPath::set(T& destValue, const QString& path, const QJsonValue& newValue);
@@ -23,9 +24,11 @@
  * Functions QJsonPath::setSeparator and QJsonPath::unittest are not re-entrant and not thread safe, all other functions are re-entrant but not thread safe.
  *
  * Examples:
- *   QJsonPath::set(doc, "name0/name1", "def");
- *   Q_ASSERT(QJsonPath::get(doc, {"name0", "name1"}) == "def");
- *   QJsonPath::set(doc, "name3[2][-1]/name4", "xyz");
+ *   QJsonPath::set(doc, "name0/name1[2]", "abc");
+ *   Q_ASSERT(QJsonPath::get(doc, {"name0", "name1", 2}) == "abc");
+ *   QJsonPath::remove(doc, "name0/name1[1]");
+ *   QJsonPath::setSeparator('.');
+ *   Q_ASSERT(QJsonPath::get(doc, "name0.name1[-1]") == "abc");
  * For more examples see QJsonPath::unittest
  *
  * Path String:
@@ -34,7 +37,7 @@
  *
  * Path List:
  * No separator is needed, names can have any character in it, even separator and brackets are allowed.
- * A list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in a array.
+ * A list consists of strings and integers only. A string is always an attribute name in an object, an integer is always an index in an array.
  *
  * Array Indexes:
  * If an array index is negative it counts down from the top, -1 for example would be the last array element. Indexes start at zero.

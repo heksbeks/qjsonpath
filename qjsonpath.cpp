@@ -260,7 +260,7 @@ QVariantList QJsonPath::splitPath(const QString& path)
             i0_idx = i+1;
         else if (path[i] == bracketClose && i0_idx > 0) {
             auto sIdx = path.mid(i0_idx, i - i0_idx);
-            bool ok = false;
+			bool ok;
             int idx = sIdx.toInt(&ok);
             if (ok) {
                 int n = i0_idx-1 - i0_name;
@@ -280,15 +280,15 @@ QVariantList QJsonPath::splitPath(const QString& path)
 
 template <class T> static void _handleJsonAttribute_unittest_object(T& doc)
 {
-	// values not found are QJsonValue::Undefined, not QJsonValue::Null
-	Q_ASSERT(QJsonPath::get(doc, "nonexistent") == QJsonValue(QJsonValue::Undefined));
+    // values not found are QJsonValue::Undefined, not QJsonValue::Null
+    Q_ASSERT(QJsonPath::get(doc, "nonexistent") == QJsonValue(QJsonValue::Undefined));
     Q_ASSERT(QJsonPath::get(doc, "nonexistent", 55) == 55); // default value
-	// key names can also be empty
-	Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined));
+    // key names can also be empty
+    Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined));
 
     // simple attributes in root
     QJsonPath::set(doc, "name0", "def"); // simple string attribute
-	Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined));
+    Q_ASSERT(QJsonPath::get(doc, "") == QJsonValue(QJsonValue::Undefined));
     QJsonPath::set(doc, "", "abc"); // key names can also be empty
     Q_ASSERT(QJsonPath::get(doc, "name0") == "def");
     Q_ASSERT(QJsonPath::get(doc, "") == "abc");
@@ -319,7 +319,7 @@ template <class T> static void _handleJsonAttribute_unittest_object(T& doc)
     Q_ASSERT(QJsonPath::get(doc, "name2/name3") == obj22);
 
     // array
-    auto v = QJsonArray({ 1,2,3 });
+	QJsonArray v{ 1, 2, 3 };
     QJsonPath::set(doc, "name2/name21/name2", v);
     Q_ASSERT(QJsonPath::get(doc, "name2/name21/name2", "y2") == v);
     Q_ASSERT(QJsonPath::get(doc, "name2/name210/name2", obj22) == obj22);

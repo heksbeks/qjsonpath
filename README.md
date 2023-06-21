@@ -1,6 +1,7 @@
 # QJsonPath
 
-A simple class to set, get and remove attributes of JSON data in Qt. Simple XPath like notation to specify attributes.
+A simple class to set, get and remove attributes of JSON data in Qt.
+Simple XPath like notation to specify JSON attributes.
 Functions support all JSON classes: QJsonDocument, QJsonObject, QJsonArray and QJsonValue.
 
 ## Functions
@@ -18,11 +19,12 @@ Functions QJsonPath::setSeparator and QJsonPath::unittest are not re-entrant and
 
 ## Examples
 ```c++
-QJsonPath::set(doc, "name0/name1", "def");
-Q_ASSERT(QJsonPath::get(doc, {"name0", "name1"}) == "def");
-QJsonPath::set(doc, "name3[2][-1]/name4", "xyz");
+QJsonPath::set(doc, "name0/name1[2]", "abc");
+Q_ASSERT(QJsonPath::get(doc, {"name0", "name1", 2}) == "abc");
+QJsonPath::remove(doc, "name0/name1[1]");
+QJsonPath::setSeparator('.');
+Q_ASSERT(QJsonPath::get(doc, "name0.name1[-1]") == "abc");
 ```
-For more examples see QJsonPath::unittest
 
 ## Path String
 A path specified as a QString uses separators and brackets. A QString is converted to a QVariantList by QJsonPath::splitPath.
@@ -36,7 +38,7 @@ A list consists of strings and integers only. A string is always an attribute na
 If an array index is negative it counts down from the top, -1 for example would be the last array element. Indexes start at zero.
 
 
-## Examples
+## More examples (QJsonPath::unittest)
 
 ```c++
 QJsonDocument doc; // also works with QJsonValue and QJsonObject in the same way

@@ -260,7 +260,7 @@ QVariantList QJsonPath::splitPath(const QString& path)
             i0_idx = i+1;
         else if (path[i] == bracketClose && i0_idx > 0) {
             auto sIdx = path.mid(i0_idx, i - i0_idx);
-			bool ok;
+            bool ok;
             int idx = sIdx.toInt(&ok);
             if (ok) {
                 int n = i0_idx-1 - i0_name;
@@ -310,15 +310,15 @@ template <class T> static void _handleJsonAttribute_unittest_object(T& doc)
 
     // complex values
     QJsonObject obj2;
-	obj2["name2a"] = "x";
+    obj2["name2a"] = "km";
     QJsonObject obj22;
-	obj22["name2b"] = obj2;
-	QJsonPath::set(doc, "name2/name3", obj22);
-	Q_ASSERT(QJsonPath::get(doc, "name2/name3") == obj22);
-	Q_ASSERT(QJsonPath::get(doc, "name2/name3/name2b/name2a") == "x");
+    obj22["name2b"] = obj2;
+    QJsonPath::set(doc, "name2/name3", obj22);
+    Q_ASSERT(QJsonPath::get(doc, "name2/name3") == obj22);
+    Q_ASSERT(QJsonPath::get(doc, "name2/name3/name2b/name2a") == "km");
 
     // array
-	QJsonArray v{ 1, 2, 3 };
+    QJsonArray v{ 1, 2, 3 };
     QJsonPath::set(doc, "name2/name21/name2", v);
     Q_ASSERT(QJsonPath::get(doc, "name2/name21/name2", "y2") == v);
     Q_ASSERT(QJsonPath::get(doc, "name2/name210/name2", obj22) == obj22);
@@ -332,6 +332,7 @@ template <class T> static void _handleJsonAttribute_unittest_object(T& doc)
     QJsonPath::set(doc, "name3[2]", "xyz"); // define only 3rd element of array, first two will be null
     Q_ASSERT(QJsonPath::get(doc, "name3[2]") == "xyz");
     Q_ASSERT(QJsonPath::get(doc, "name3[-1]") == "xyz"); // negativ indexes are from top to bottom
+    Q_ASSERT(QJsonPath::get(doc, "name3[1]") == QJsonValue(QJsonValue::Null));
 
     // when using a list, strings are attribute names, numbers are array indexes
     QJsonPath::set(doc, {"name3", 1, "name30", "name31"}, "asd");

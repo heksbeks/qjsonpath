@@ -75,12 +75,12 @@ Q_ASSERT(QJsonPath::get(doc, {"name2", "name2", "nonexistent"}, 77) == 77);
 
 // complex values
 QJsonObject obj2;
-obj2["name2a"] = "x";
+obj2["name2a"] = "km";
 QJsonObject obj22;
 obj22["name2b"] = obj2;
 QJsonPath::set(doc, "name2/name3", obj22);
 Q_ASSERT(QJsonPath::get(doc, "name2/name3") == obj22);
-Q_ASSERT(QJsonPath::get(doc, "name2/name3/name2b/name2a") == "x");
+Q_ASSERT(QJsonPath::get(doc, "name2/name3/name2b/name2a") == "km");
 
 // array
 QJsonArray v{ 1, 2, 3 };
@@ -97,6 +97,7 @@ Q_ASSERT(QJsonPath::get(doc, "name3[1]", "88") == "88");
 QJsonPath::set(doc, "name3[2]", "xyz"); // define only 3rd element of array, first two will be null
 Q_ASSERT(QJsonPath::get(doc, "name3[2]") == "xyz");
 Q_ASSERT(QJsonPath::get(doc, "name3[-1]") == "xyz"); // negativ indexes are from top to bottom
+Q_ASSERT(QJsonPath::get(doc, "name3[1]") == QJsonValue(QJsonValue::Null));
 
 // when using a list, strings are attribute names, numbers are array indexes
 QJsonPath::set(doc, {"name3", 1, "name30", "name31"}, "asd");

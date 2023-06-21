@@ -24,6 +24,8 @@ Q_ASSERT(QJsonPath::get(doc, {"name0", "name1", 2}) == "abc");
 QJsonPath::remove(doc, "name0/name1[1]");
 QJsonPath::setSeparator('.');
 Q_ASSERT(QJsonPath::get(doc, "name0.name1[-1]") == "abc");
+Q_ASSERT(QJsonPath::get(doc, "name0.name1[0]") == QJsonValue(QJsonValue::Null));
+Q_ASSERT(QJsonPath::get(doc, "name0.name1[99]") == QJsonValue(QJsonValue::Undefined));
 ```
 
 ## Path String

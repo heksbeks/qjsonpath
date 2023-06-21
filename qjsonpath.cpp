@@ -310,13 +310,12 @@ template <class T> static void _handleJsonAttribute_unittest_object(T& doc)
 
     // complex values
     QJsonObject obj2;
-    obj2["name2"] = "x";
-    Q_ASSERT(QJsonPath::get(doc, "name2/name2") == obj2);
+	obj2["name2a"] = "x";
     QJsonObject obj22;
-    obj22["name2"] = obj2;
-    Q_ASSERT(QJsonPath::get(doc, "name2") == obj22);
-    QJsonPath::set(doc, "name2/name3", obj22);
-    Q_ASSERT(QJsonPath::get(doc, "name2/name3") == obj22);
+	obj22["name2b"] = obj2;
+	QJsonPath::set(doc, "name2/name3", obj22);
+	Q_ASSERT(QJsonPath::get(doc, "name2/name3") == obj22);
+	Q_ASSERT(QJsonPath::get(doc, "name2/name3/name2b/name2a") == "x");
 
     // array
 	QJsonArray v{ 1, 2, 3 };
